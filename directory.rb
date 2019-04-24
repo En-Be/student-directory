@@ -2,17 +2,17 @@
 # first we make a list of students names to use if not inputting them
 
 students = [
-  {name: "Dr Hannibal Lecter", cohort: :november},
-  {name: "Darth Vader", cohort: :november},
-  {name: "Nurse Ratchet", cohort: :november},
-  {name: "Michael Corleone", cohort: :november},
-  {name: "Alex Delarge", cohort: :november},
-  {name: "The Wicked Witch of the West", cohort: :november},
-  {name: "Terminator", cohort: :november},
-  {name: "Freddy Kruger", cohort: :november},
-  {name: "The Joker", cohort: :november},
-  {name: "Joffrey Baratheon", cohort: :november},
-  {name: "Norman Bates", cohort: :november}
+  {name: "Dr Hannibal Lecter", fav_food: "brains", hobby: "minecraft", cohort: :november},
+  {name: "Darth Vader", fav_food: "jelly", hobby: "swimming", cohort: :november},
+  {name: "Nurse Ratchet", fave_food: "salt", hobby: "carpet samples", cohort: :november},
+  {name: "Michael Corleone", fav_food: "pasta", hobby: "sunbathing", cohort: :november},
+  {name: "Alex Delarge", fav_food: "milk", hobby: "gangtime", cohort: :november},
+  {name: "The Wicked Witch of the West", fav_food: "children", hobby: "singing", cohort: :november},
+  {name: "Terminator", fav_food: "batteries", hobby: "sitting still", cohort: :november},
+  {name: "Freddy Kruger", fav_food: "pizza", hobby: "tapdance", cohort: :november},
+  {name: "The Joker", fav_food: "sausages", hobby: "blackmail", cohort: :november},
+  {name: "Joffrey Baratheon", fav_food: "poisont", hobby: "torture", cohort: :november},
+  {name: "Norman Bates", fav_food: "cocaine", hobby: "music", cohort: :november}
   ]
 
 # allow the user to create their own list if they want
@@ -105,7 +105,7 @@ def print_list(students)
   l = students.length
   c = 0
   until c == l do
-    puts "#{c + 1} - #{students[c][:name]} (#{students[c][:cohort]} cohort)"
+    puts "#{c + 1} - #{students[c][:name]}, favourite food: #{students[c][:fav_food]}, hobbies include: #{students[c][:hobby]} (#{students[c][:cohort]} cohort)"
     c += 1
   end
 end

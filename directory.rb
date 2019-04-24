@@ -17,13 +17,20 @@ students = [
 
 # allow the user to create their own list if they want
 
-def input_students
+@students = []
+
+def input_students(students)
   puts "Please enter the names of the students"
   puts "To finish, enter an empty name"
-  students = []
   name = gets.chomp
   while !name.empty? do
-    students << {name: name, cohort: :november}
+    puts "What is their favourite food?"
+    food = gets.chomp
+    puts "What is their hobby?"
+    hobby = gets.chomp
+    puts "and what month did they join?"
+    month = gets.chomp
+    students << {name: name, fav_food: food, hobby: hobby, cohort: month}
     puts "Now we have #{students.count} students"
     name = gets.chomp
   end
@@ -143,7 +150,6 @@ end
 # the following is the main loop that calls the above
 
 def interactive_menu
-  students = []
   loop do
     #1.print the menu and ask the user what to do
     puts "1. Input the students"
@@ -155,10 +161,10 @@ def interactive_menu
     case selection
       when "1"
         #input the student
-        students = input_students
+        @students = input_students(@students)
       when "2"
         #show the students
-        print_full_list(students)
+        print_full_list(@students)
       when "9"
         exit
       else

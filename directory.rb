@@ -1,4 +1,6 @@
-# first we make a list of students names
+
+# first we make a list of students names to use if not inputting them
+
 students = [
   {name: "Dr Hannibal Lecter", cohort: :november},
   {name: "Darth Vader", cohort: :november},
@@ -13,6 +15,8 @@ students = [
   {name: "Norman Bates", cohort: :november}
   ]
 
+# allow the user to create their own list if they want
+
 def input_students
   puts "Please enter the names of the students"
   puts "To finish, enter an empty name"
@@ -26,6 +30,8 @@ def input_students
   students
 end
 
+# the following methods make up the filtering and printing process (imperative)
+
 def print_header(selection_message, letter_or_number)
   puts ""
   header = {
@@ -38,6 +44,7 @@ def print_header(selection_message, letter_or_number)
   puts "-----------------------------"
 end
 
+=begin # this is just with an each loop instead
 def select_students_with_initial(students, initial)
   edited_list = []
   students.each do |student|
@@ -48,7 +55,22 @@ def select_students_with_initial(students, initial)
   end
   edited_list
 end
+=end
+def select_students_with_initial(students, initial)
+  edited_list = []
+  l = students.length
+  c = 0
+  until c == l do
+    name_letters = students[c][:name].split ""
+    if name_letters[0] == initial
+      edited_list << students[c]
+    end
+    c += 1
+  end
+  edited_list
+end
 
+=begin #  this is just with an each loop instead
 def select_students_with_short_name(students, number_of_letters)
   edited_list = []
   students.each do |student|
@@ -58,10 +80,33 @@ def select_students_with_short_name(students, number_of_letters)
   end
   edited_list
 end
+=end
+def select_students_with_short_name(students, number_of_letters)
+  edited_list = []
+  l = students.length
+  c = 0
+  until c == l do
+    if students[c][:name].length < number_of_letters
+      edited_list << students[c]
+    end
+    c += 1
+  end
+  edited_list
+end
 
+=begin # this is just with an each loop instead
 def print_list(students)
   students.each_with_index do |student, index|
     puts "#{index + 1} - #{student[:name]} (#{student[:cohort]} cohort)"
+  end
+end
+=end
+def print_list(students)
+  l = students.length
+  c = 0
+  until c == l do
+    puts "#{c + 1} - #{students[c][:name]} (#{students[c][:cohort]} cohort)"
+    c += 1
   end
 end
 
@@ -72,7 +117,7 @@ def print_footer(students)
   puts ""
 end
 
-#students = input_students
+# the following methods collect the above to call them based on input (declarative)
 
 def print_full_list(students)
   print_header("full", nil)
@@ -93,7 +138,11 @@ def print_filtered_by_name_length(students)
   print_list(filtered_list)
   print_footer(filtered_list)
 end
-  
+
+# the following methods will be chosen from a menu
+
+#students = input_students
+
 print_full_list(students)
 print_filtered_by_initial(students)
 print_filtered_by_name_length(students)

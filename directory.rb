@@ -105,7 +105,8 @@ def print_list(students)
   l = students.length
   c = 0
   until c == l do
-    puts "#{c + 1} - #{students[c][:name]}, favourite food: #{students[c][:fav_food]}, hobbies include: #{students[c][:hobby]} (#{students[c][:cohort]} cohort)"
+    line = "#{c + 1} - #{students[c][:name]}, favourite food: #{students[c][:fav_food]}, hobbies include: #{students[c][:hobby]} (#{students[c][:cohort]} cohort)"
+    puts line#.center(100)
     c += 1
   end
 end
@@ -139,10 +140,39 @@ def print_filtered_by_name_length(students)
   print_footer(filtered_list)
 end
 
+# the following is the main loop that calls the above
+
+def interactive_menu
+  students = []
+  loop do
+    #1.print the menu and ask the user what to do
+    puts "1. Input the students"
+    puts "2. Show the students"
+    puts "9. Exit"
+    #2.read the input and ssave it to a variable
+    selection = gets.chomp
+    #3.do what the user has asked
+    case selection
+      when "1"
+        #input the student
+        students = input_students
+      when "2"
+        #show the students
+        print_full_list(students)
+      when "9"
+        exit
+      else
+        puts "I don't know what you mean, try again please"
+    end
+  end
+end
+
 # the following methods will be chosen from a menu
 
 #students = input_students
 
-print_full_list(students)
-print_filtered_by_initial(students)
-print_filtered_by_name_length(students)
+#print_full_list(students)
+#print_filtered_by_initial(students)
+#print_filtered_by_name_length(students)
+
+interactive_menu

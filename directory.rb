@@ -147,6 +147,19 @@ def print_filtered_by_name_length(students)
   print_footer(filtered_list)
 end
 
+# this is for writing to a file
+
+def save_students
+  file = File.open("students.csv", "a+")
+  @students.each do |student|
+    student_data = [student[:name], student[:fav_food], student[:hobby], student[:cohort]]
+    csv_line = student_data.join ","
+    file.puts csv_line
+    puts "saved"
+  end
+  file.close
+end
+
 # the following is the main loop that calls the above
 
 def interactive_menu
@@ -154,6 +167,7 @@ def interactive_menu
     #1.print the menu and ask the user what to do
     puts "1. Input the students"
     puts "2. Show the students"
+    puts "3. Save students"
     puts "9. Exit"
     #2.read the input and ssave it to a variable
     selection = gets.chomp
@@ -165,6 +179,8 @@ def interactive_menu
       when "2"
         #show the students
         print_full_list(@students)
+      when "3"
+        save_students
       when "9"
         exit
       else
